@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MapWise</title>
+  <meta name="description" content="A simple travel map companion for saved places, addresses and navigation handoff." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.json" />
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="./style-v1.css?v=1" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <section>
+        <p class="eyebrow">Travel map · saved places · navigation handoff</p>
+        <h1>MapWise</h1>
+        <p class="subtitle">
+          Save important places, store local-language addresses, copy coordinates, and open routes in Organic Maps, Apple Maps or Google Maps.
+        </p>
+      </section>
+      <button id="themeToggle" class="theme-toggle" type="button">Dark Mode</button>
+    </header>
+
+    <section class="action-bar">
+      <button id="locateButton" class="primary-button" type="button">Find me</button>
+      <button id="saveCurrentButton" type="button">Save current location</button>
+      <button id="addManualButton" type="button">Add manually</button>
+      <button id="exportButton" type="button">Export</button>
+      <label class="import-label">
+        Import
+        <input id="importInput" type="file" accept="application/json" />
+      </label>
+    </section>
+
+    <section class="layout">
+      <section class="map-card">
+        <div id="map"></div>
+        <div class="map-help">Tap/click the map to add a pin. Saved places stay in this browser.</div>
+      </section>
+
+      <aside class="places-panel">
+        <div class="panel-header">
+          <div>
+            <strong>Saved places</strong>
+            <span id="placeCount">0 places</span>
+          </div>
+          <select id="categoryFilter">
+            <option value="all">All</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Emergency">Emergency</option>
+            <option value="Work">Work</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
+
+        <input id="searchInput" class="search-input" type="search" placeholder="Search saved places..." />
+
+        <div id="placesList" class="places-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <section id="placeModal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="modal-title">
+        <strong id="modalTitle">Save place</strong>
+        <button id="closeModalButton" type="button">×</button>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          Name
+          <input id="placeNameInput" type="text" placeholder="Hotel, station, restaurant..." />
+        </label>
+
+        <label>
+          Category
+          <select id="placeCategoryInput">
+            <option>Hotel</option>
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Emergency</option>
+            <option>Work</option>
+            <option>Custom</option>
+          </select>
+        </label>
+
+        <label>
+          Address
+          <input id="placeAddressInput" type="text" placeholder="English address or short description" />
+        </label>
+
+        <label>
+          Local-language address
+          <input id="placeLocalAddressInput" type="text" placeholder="中文 / 日本語 / 한국어 / Arabic / Persian..." />
+        </label>
+
+        <label>
+          Latitude
+          <input id="placeLatInput" type="number" step="any" />
+        </label>
+
+        <label>
+          Longitude
+          <input id="placeLngInput" type="number" step="any" />
+        </label>
+
+        <label class="wide">
+          Notes
+          <textarea id="placeNotesInput" placeholder="Room number, meeting time, entrance details, etc."></textarea>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="deletePlaceButton" class="danger-button" type="button">Delete</button>
+        <button id="savePlaceButton" class="primary-button" type="button">Save place</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="largeModal" class="large-modal" hidden>
+    <button id="closeLargeButton" type="button">×</button>
+    <div id="largeAddressText" class="large-address-text"></div>
+  </section>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+  <script src="./app-v1.js?v=1"></script>
+</body>
+</html>

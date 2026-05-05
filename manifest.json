@@ -1,0 +1,19 @@
+{
+  "name": "MapWise",
+  "short_name": "MapWise",
+  "description": "A simple travel map companion for saved places and navigation handoff.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3efe7",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
